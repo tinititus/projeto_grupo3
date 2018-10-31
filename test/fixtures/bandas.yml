@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  genero: MyString
+  pais_de_origem: MyString
+  membros: MyString
+  media_rating: 1.5
+  status: false
+
+two:
+  name: MyString
+  genero: MyString
+  pais_de_origem: MyString
+  membros: MyString
+  media_rating: 1.5
+  status: false

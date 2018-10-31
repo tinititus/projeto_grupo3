@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @banda.name %>
+</p>
+
+<p>
+  <strong>Genero:</strong>
+  <%= @banda.genero %>
+</p>
+
+<p>
+  <strong>Pais de origem:</strong>
+  <%= @banda.pais_de_origem %>
+</p>
+
+<p>
+  <strong>Membros:</strong>
+  <%= @banda.membros %>
+</p>
+
+<p>
+  <strong>Media rating:</strong>
+  <%= @banda.media_rating %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @banda.status %>
+</p>
+
+<%= link_to 'Edit', edit_banda_path(@banda) %> |
+<%= link_to 'Back', bandas_path %>

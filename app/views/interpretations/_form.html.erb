@@ -1,0 +1,22 @@
+<%= form_with(model: interpretation, local: true) do |form| %>
+  <% if interpretation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(interpretation.errors.count, "error") %> prohibited this interpretation from being saved:</h2>
+
+      <ul>
+      <% interpretation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :interpretation %>
+    <%= form.text_area :interpretation, id: :interpretation_interpretation %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Musicas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Duracao</th>
+      <th>Letra</th>
+      <th>Album</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @musicas.each do |musica| %>
+      <tr>
+        <td><%= musica.name %></td>
+        <td><%= musica.duracao %></td>
+        <td><%= musica.letra %></td>
+        <td><%= musica.album %></td>
+        <td><%= link_to 'Show', musica %></td>
+        <td><%= link_to 'Edit', edit_musica_path(musica) %></td>
+        <td><%= link_to 'Destroy', musica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Musica', new_musica_path %>

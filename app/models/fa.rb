@@ -1,0 +1,2 @@
+class Fa < ApplicationRecord
+end
