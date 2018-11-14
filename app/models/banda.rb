@@ -4,4 +4,5 @@ class Banda < ApplicationRecord
 	has_many :musicas, dependent: :destroy
 	has_many :fas, through: :rating
 	has_many :interpretations, through: :musica
+	has_many :fas, through: :rating
 end
