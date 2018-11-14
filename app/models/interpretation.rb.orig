@@ -1,0 +1,8 @@
+class Interpretation < ApplicationRecord
+<<<<<<< HEAD
+=======
+
+>>>>>>> f178b20afe277a65243afeea1c75503a274650a8
+	belongs_to :fa
+	belongs_to :musica
+end

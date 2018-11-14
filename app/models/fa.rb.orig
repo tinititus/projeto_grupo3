@@ -1,6 +1,15 @@
 class Fa < ApplicationRecord
+<<<<<<< HEAD
 	has_one :usuario, dependent: :destroy
 	has_many :ratings, dependent: :destroy
 	has_many :interpretations, dependent: :destroy
 	has_many :bandas, through: :rating
+=======
+
+	has_many :interpretations
+
+	# um fã pode ter vários ratings
+	has_many :ratings, through: :banda
+
+>>>>>>> f178b20afe277a65243afeea1c75503a274650a8
 end

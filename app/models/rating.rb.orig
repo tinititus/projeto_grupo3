@@ -1,0 +1,12 @@
+class Rating < ApplicationRecord
+<<<<<<< HEAD
+	belongs_to :banda
+	belongs_to :fa
+=======
+	# todo rating id é linkado a um fã, pelo fa_id
+	belongs_to :fa
+	# todo rating id é linkado a uma banda, pelo banda_id
+	belongs_to :banda
+	
+>>>>>>> f178b20afe277a65243afeea1c75503a274650a8
+end

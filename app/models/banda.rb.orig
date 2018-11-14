@@ -1,7 +1,11 @@
 class Banda < ApplicationRecord
+<<<<<<< HEAD
 	has_one :usuario, dependent: :destroy
 	has_many :ratings, dependent: :destroy
 	has_many :musicas, dependent: :destroy
 	has_many :fas, through: :rating
 	has_many :interpretations, through: :musica
+=======
+	has_many :fas, through: :rating
+>>>>>>> f178b20afe277a65243afeea1c75503a274650a8
 end
