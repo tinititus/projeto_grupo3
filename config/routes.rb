@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :usuarios
-  resources :fas
+  resources :fas do
+	resources :ratings
+  end
   resources :ratings
   resources :interpretations
   resources :musicas

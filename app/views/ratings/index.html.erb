@@ -1,29 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Ratings</h1>
+<h1>Ratings<%= @fa.fa_id %></h1>
+<% if !@fa.rating.empty? %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nota</th>
-      <th>Comentario</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+	<table>
+	  <thead>
+		<tr>
+		  <th>Nota</th>
+		  <th>Comentario</th>
+		  <th colspan="3"></th>
+		</tr>
+	  </thead>
 
-  <tbody>
-    <% @ratings.each do |rating| %>
-      <tr>
-        <td><%= rating.nota %></td>
-        <td><%= rating.comentario %></td>
-        <td><%= link_to 'Show', rating %></td>
-        <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
-        <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	  <tbody>
+		<% @ratings.each do |rating| %>
+		  <tr>
+			<td><%= rating.nota %></td>
+			<td><%= rating.comentario %></td>
+			<td><%= link_to 'Show', [ @fa, rating ] %></td>
+			<td><%= link_to 'Edit', edit_fa_rating_path(@fa, rating) %></td>
+			<td><%= link_to 'Destroy', [ @fa, rating ], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		  </tr>
+		<% end %>
+	  </tbody>
+	</table>
 
-<br>
+	<br>
+<% else %>
+	<p><%= @fa.fa_id %> hasn't done any rating yet.</p>
+<% end %>
 
-<%= link_to 'New Rating', new_rating_path %>
+	<%= link_to 'New Rating', new_fa_rating_path(@fa) %>
+	<%= link_to 'Back', @fa %>

@@ -1,10 +1,11 @@
 class RatingsController < ApplicationController
-  before_action :set_rating, only: [:show, :edit, :update, :destroy]
+  before_action :get_fa
+  before_action :set_rating, only: [:show]
 
   # GET /ratings
   # GET /ratings.json
   def index
-    @ratings = Rating.all
+    @ratings = @fa.ratings
   end
 
   # GET /ratings/1
@@ -14,7 +15,7 @@ class RatingsController < ApplicationController
 
   # GET /ratings/new
   def new
-    @rating = Rating.new
+    @ratings = @fa.ratings.build
   end
 
   # GET /ratings/1/edit
@@ -24,11 +25,11 @@ class RatingsController < ApplicationController
   # POST /ratings
   # POST /ratings.json
   def create
-    @rating = Rating.new(rating_params)
+    @rating = @fa.ratings.build(rating_params)
 
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.html { redirect_to fa_ratings_url(@fa), notice: 'Rating was successfully created.' }
         format.json { render :show, status: :created, location: @rating }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class RatingsController < ApplicationController
   def update
     respond_to do |format|
       if @rating.update(rating_params)
-        format.html { redirect_to @rating, notice: 'Rating was successfully updated.' }
+        format.html { redirect_to fa_ratings_url(@fa), notice: 'Rating was successfully updated.' }
         format.json { render :show, status: :ok, location: @rating }
       else
         format.html { render :edit }
@@ -50,7 +51,7 @@ class RatingsController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /ratings/1
   # DELETE /ratings/1.json
   def destroy
@@ -62,9 +63,12 @@ class RatingsController < ApplicationController
   end
 
   private
+    def get_fa
+		@fa = Fa.find(params[:fa_id])
+	end
     # Use callbacks to share common setup or constraints between actions.
     def set_rating
-      @rating = Rating.find(params[:id])
+      @rating = @fa.ratings.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
