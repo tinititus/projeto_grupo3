@@ -1,10 +1,11 @@
 class InterpretationsController < ApplicationController
   before_action :set_interpretation, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_musica, only: [:index, :new] #Dan
+  
   # GET /interpretations
   # GET /interpretations.json
   def index
-    @interpretations = Interpretation.all
+	@interpretations = Interpretation.where(musica_id: params[:musica_id]) #Dan
   end
 
   # GET /interpretations/1
@@ -14,7 +15,7 @@ class InterpretationsController < ApplicationController
 
   # GET /interpretations/new
   def new
-    @interpretation = Interpretation.new
+    @interpretation = @musica.interpretations.new
   end
 
   # GET /interpretations/1/edit
@@ -54,9 +55,10 @@ class InterpretationsController < ApplicationController
   # DELETE /interpretations/1
   # DELETE /interpretations/1.json
   def destroy
+    interpretation = @interpretation.musica
     @interpretation.destroy
     respond_to do |format|
-      format.html { redirect_to interpretations_url, notice: 'Interpretation was successfully destroyed.' }
+      format.html { redirect_to interpretations_url(:interpretation_id => @interpretation.id), notice: 'Interpretation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,9 +68,13 @@ class InterpretationsController < ApplicationController
     def set_interpretation
       @interpretation = Interpretation.find(params[:id])
     end
+	
+	def set_musica
+      @musica = Musica.find(params[:musica_id])
+    end	
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def interpretation_params
-      params.require(:interpretation).permit(:interpretation)
+      params.require(:interpretation).permit(:interpretation, :musica_id)
     end
 end

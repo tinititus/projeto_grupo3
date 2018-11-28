@@ -3,4 +3,4 @@
 <%= render 'form', interpretation: @interpretation %>
 
 <%= link_to 'Show', @interpretation %> |
-<%= link_to 'Back', interpretations_path %>
+<%= link_to 'Back', interpretations_path(:musica_id => @interpretation.musica.id) %>

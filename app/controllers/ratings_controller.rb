@@ -1,11 +1,11 @@
 class RatingsController < ApplicationController
-  before_action :get_fa
-  before_action :set_rating, only: [:show]
+  before_action :set_rating, only: [:show, :edit, :update, :destroy]
+  before_action :set_banda, only: [:index, :new] #Dan
 
   # GET /ratings
   # GET /ratings.json
   def index
-    @ratings = @fa.ratings
+	@ratings = Rating.where(banda_id: params[:banda_id]) #Dan #mudar pro fa
   end
 
   # GET /ratings/1
