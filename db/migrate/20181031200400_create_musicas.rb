@@ -5,6 +5,7 @@ class CreateMusicas < ActiveRecord::Migration[5.1]
       t.time :duracao
       t.text :letra
       t.string :album
+	  t.references :banda, foreign_key: true #Dan
 
       t.timestamps
     end

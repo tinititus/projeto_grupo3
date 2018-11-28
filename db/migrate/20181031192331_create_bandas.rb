@@ -7,6 +7,7 @@ class CreateBandas < ActiveRecord::Migration[5.1]
       t.string :membros
       t.float :media_rating
       t.boolean :status
+	  t.references :usuario, foreign_key: true #Dan
 
       t.timestamps
     end

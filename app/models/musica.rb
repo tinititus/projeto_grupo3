@@ -1,4 +1,4 @@
 class Musica < ApplicationRecord
-	belongs to :banda
-	has_many :interpretations, dependent: :destroy
+	belongs_to :banda
+	has_many :interpretations#, dependent: :destroy #Dan
 end

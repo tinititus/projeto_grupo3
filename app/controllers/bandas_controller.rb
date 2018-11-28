@@ -1,4 +1,4 @@
-class BandasController < ApplicationController
+class BandasController < ApplicationController 
   before_action :set_banda, only: [:show, :edit, :update, :destroy]
 
   # GET /bandas
@@ -10,6 +10,7 @@ class BandasController < ApplicationController
   # GET /bandas/1
   # GET /bandas/1.json
   def show
+	#session[:banda_id] = @banda.id
   end
 
   # GET /bandas/new

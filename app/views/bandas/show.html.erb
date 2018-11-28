@@ -30,5 +30,11 @@
   <%= @banda.status %>
 </p>
 
+<!-- #Dan -->
+<%= link_to 'Lista de Musicas', banda_musicas_path(@banda) %>
+<!--
+<%= link_to 'Lista de Musicas', musicas_path(@banda) %>
+-->
+
 <%= link_to 'Edit', edit_banda_path(@banda) %> |
 <%= link_to 'Back', bandas_path %>

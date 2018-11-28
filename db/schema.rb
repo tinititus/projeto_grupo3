@@ -19,19 +19,27 @@ ActiveRecord::Schema.define(version: 20181031202027) do
     t.string "membros"
     t.float "media_rating"
     t.boolean "status"
+    t.integer "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_bandas_on_usuario_id"
   end
 
   create_table "fas", force: :cascade do |t|
+    t.integer "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_fas_on_usuario_id"
   end
 
   create_table "interpretations", force: :cascade do |t|
     t.text "interpretation"
+    t.integer "musica_id"
+    t.integer "fa_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["fa_id"], name: "index_interpretations_on_fa_id"
+    t.index ["musica_id"], name: "index_interpretations_on_musica_id"
   end
 
   create_table "musicas", force: :cascade do |t|
@@ -39,15 +47,21 @@ ActiveRecord::Schema.define(version: 20181031202027) do
     t.time "duracao"
     t.text "letra"
     t.string "album"
+    t.integer "banda_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["banda_id"], name: "index_musicas_on_banda_id"
   end
 
   create_table "ratings", force: :cascade do |t|
     t.integer "nota"
     t.text "comentario"
+    t.integer "banda_id"
+    t.integer "fa_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["banda_id"], name: "index_ratings_on_banda_id"
+    t.index ["fa_id"], name: "index_ratings_on_fa_id"
   end
 
   create_table "usuarios", force: :cascade do |t|

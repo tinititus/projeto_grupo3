@@ -1,10 +1,13 @@
 class MusicasController < ApplicationController
   before_action :set_musica, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_banda, only: [:new] #Dan
+  
   # GET /musicas
   # GET /musicas.json
   def index
-    @musicas = Musica.all
+    #@musicas = Musica.all
+    #@musicas = Musica.where(banda_id: session[:banda_id]) #Dan
+    @musicas = Musica.where(banda_id: params[:banda_id]) #Dan
   end
 
   # GET /musicas/1
@@ -14,7 +17,8 @@ class MusicasController < ApplicationController
 
   # GET /musicas/new
   def new
-    @musica = Musica.new
+    @musica = @banda.musicas.new #Dan
+	
   end
 
   # GET /musicas/1/edit
@@ -67,8 +71,14 @@ class MusicasController < ApplicationController
       @musica = Musica.find(params[:id])
     end
 
+	#Dan
+	def set_banda
+	  #@banda = Banda.find(session[:banda_id])
+      @banda = Banda.find(params[:banda_id])
+    end	
+	
     # Never trust parameters from the scary internet, only allow the white list through.
     def musica_params
-      params.require(:musica).permit(:name, :duracao, :letra, :album)
+      params.require(:musica).permit(:name, :duracao, :letra, :album, :banda_id) #Dan
     end
 end
