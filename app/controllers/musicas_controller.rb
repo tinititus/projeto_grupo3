@@ -1,6 +1,6 @@
 class MusicasController < ApplicationController
   before_action :set_musica, only: [:show, :edit, :update, :destroy]
-  before_action :set_banda, only: [:new] #Dan
+  before_action :set_banda, only: [:index, :new] #Dan
   
   # GET /musicas
   # GET /musicas.json
@@ -18,7 +18,6 @@ class MusicasController < ApplicationController
   # GET /musicas/new
   def new
     @musica = @banda.musicas.new #Dan
-	
   end
 
   # GET /musicas/1/edit
@@ -57,10 +56,12 @@ class MusicasController < ApplicationController
 
   # DELETE /musicas/1
   # DELETE /musicas/1.json
+  #Dan
   def destroy
+	banda = @musica.banda
     @musica.destroy
     respond_to do |format|
-      format.html { redirect_to musicas_url, notice: 'Musica was successfully destroyed.' }
+      format.html { redirect_to musicas_url(:banda_id => banda.id), notice: 'Musica was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
