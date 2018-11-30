@@ -2,4 +2,4 @@
 
 <%= render 'form', rating: @rating %>
 
-<%= link_to 'Back', ratings_path %>
+<%= link_to 'Back', ratings_path(:banda_id => @rating.banda.id) %>

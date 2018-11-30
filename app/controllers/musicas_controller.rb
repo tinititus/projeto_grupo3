@@ -7,7 +7,8 @@ class MusicasController < ApplicationController
   def index
     #@musicas = Musica.all
     #@musicas = Musica.where(banda_id: session[:banda_id]) #Dan
-    @musicas = Musica.where(banda_id: params[:banda_id]) #Dan
+    #@musicas = Musica.where(banda_id: params[:banda_id]) #Dan
+	@musicas = Musica.where(banda_id: @banda) #Dan
   end
 
   # GET /musicas/1

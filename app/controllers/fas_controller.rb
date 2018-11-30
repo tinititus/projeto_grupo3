@@ -10,6 +10,7 @@ class FasController < ApplicationController
   # GET /fas/1
   # GET /fas/1.json
   def show
+    session[:fa_id] = @fa.id #Dan
   end
 
   # GET /fas/new

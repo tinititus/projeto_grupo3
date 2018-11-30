@@ -35,6 +35,7 @@
 <!--
 <%= link_to 'Lista de Musicas', musicas_path(@banda) %>
 -->
+<%= link_to 'Lista de Ratings', ratings_path(:banda_id => @banda.id) %>
 
 <%= link_to 'Edit', edit_banda_path(@banda) %> |
 <%= link_to 'Back', bandas_path %>

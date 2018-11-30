@@ -1,6 +1,6 @@
 class InterpretationsController < ApplicationController
   before_action :set_interpretation, only: [:show, :edit, :update, :destroy]
-  before_action :set_musica, only: [:index, :new] #Dan
+  before_action :set_musica, :set_fa, only: [:index, :new] #Dan
   
   # GET /interpretations
   # GET /interpretations.json
@@ -15,7 +15,7 @@ class InterpretationsController < ApplicationController
 
   # GET /interpretations/new
   def new
-    @interpretation = @musica.interpretations.new
+    @interpretation = @musica.interpretations.build(fa: @fa)
   end
 
   # GET /interpretations/1/edit
@@ -26,6 +26,7 @@ class InterpretationsController < ApplicationController
   # POST /interpretations.json
   def create
     @interpretation = Interpretation.new(interpretation_params)
+	#@interpretation = @musica.interpretations.build(fa: @fa)
 
     respond_to do |format|
       if @interpretation.save
@@ -72,9 +73,13 @@ class InterpretationsController < ApplicationController
 	def set_musica
       @musica = Musica.find(params[:musica_id])
     end	
+	
+	def set_fa
+      @fa = Fa.find(session[:fa_id])
+    end	
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def interpretation_params
-      params.require(:interpretation).permit(:interpretation, :musica_id)
+      params.require(:interpretation).permit(:interpretation, :musica_id, :fa_id)
     end
 end
