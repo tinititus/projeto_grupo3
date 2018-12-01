@@ -1,41 +1,84 @@
+<h1>Página da Banda: </h1>
+<h2><%= @banda.name %></h2>
+<br>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @banda.name %>
-</p>
-
+<h3>Info</h3>
 <p>
   <strong>Genero:</strong>
   <%= @banda.genero %>
 </p>
-
 <p>
   <strong>Pais de origem:</strong>
   <%= @banda.pais_de_origem %>
 </p>
-
 <p>
   <strong>Membros:</strong>
   <%= @banda.membros %>
 </p>
-
 <p>
   <strong>Media rating:</strong>
   <%= @banda.media_rating %>
 </p>
-
 <p>
   <strong>Status:</strong>
   <%= @banda.status %>
 </p>
+<%= link_to 'Edit banda info', edit_banda_path(@banda) %>
+<br>
+<br>
 
-<!-- #Dan -->
-<%= link_to 'Lista de Musicas', musicas_path(:banda_id => @banda.id) %>
-<!--
-<%= link_to 'Lista de Musicas', musicas_path(@banda) %>
--->
-<%= link_to 'Lista de Ratings', ratings_path(:banda_id => @banda.id) %>
+<h3>Lista de musicas</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Duracao</th>
+      <th>Letra</th>
+      <th>Album</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @musicas.each do |musica| %>
+      <tr>
+        <td><%= musica.name %></td>
+        <td><%= musica.duracao %></td>
+        <td><%= musica.letra %></td>
+        <td><%= musica.album %></td>
+        <td><%= link_to 'Show', musica_path(:banda_id => @banda.id) %></td>
+        <td><%= link_to 'Edit', edit_musica_path(musica) %></td>
+        <td><%= link_to 'Destroy', musica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'New Musica', new_musica_path(:banda_id => @banda.id) %>
+<br>
+<br>
+<h3>Lista de ratings</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Rating</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ratings.each do |rating| %>
+      <tr>
+        <td><%= rating.nota %></td>
+		<td><%= rating.comentario %></td>
+        <td><%= link_to 'Show', rating %></td>
+        <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
+        <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'New Rating', new_rating_path(:banda_id => @banda.id) %>
+<br>
+<br>
 
-<%= link_to 'Edit', edit_banda_path(@banda) %> |
 <%= link_to 'Back', bandas_path %>

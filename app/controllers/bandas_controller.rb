@@ -10,6 +10,8 @@ class BandasController < ApplicationController
   # GET /bandas/1
   # GET /bandas/1.json
   def show
+    @musicas = Musica.where(banda_id: @banda) #Dan
+	@ratings = Rating.where(banda_id: @banda) #Dan
 	#session[:banda_id] = @banda.id
   end
 

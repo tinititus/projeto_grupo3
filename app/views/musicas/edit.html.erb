@@ -2,4 +2,4 @@
 
 <%= render 'form', musica: @musica %>
 
-<%= link_to 'Back', musicas_path(:banda_id => @musica.banda.id) %>
+<%= link_to 'Back', banda_path(@musica.banda) %>

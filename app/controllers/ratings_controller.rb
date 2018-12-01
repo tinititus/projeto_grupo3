@@ -1,11 +1,11 @@
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :edit, :update, :destroy]
-  before_action :set_banda, only: [:index, :new] #Dan
+  before_action :set_banda, :set_fa, only: [:index, :new] #Dan
 
   # GET /ratings
   # GET /ratings.json
   def index
-	@ratings = Rating.where(banda_id: params[:banda_id]) #Dan #mudar pro fa
+	@ratings = Rating.where(banda_id: @banda) #Dan #mudar pro fa
   end
 
   # GET /ratings/1
@@ -15,7 +15,7 @@ class RatingsController < ApplicationController
 
   # GET /ratings/new
   def new
-    @rating = @banda.ratings.new
+	@rating = @banda.ratings.build(fa: @fa)
   end
 
   # GET /ratings/1/edit
@@ -65,16 +65,20 @@ class RatingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rating
-      @rating = @fa.ratings.find(params[:id])
+      @rating = Rating.find(params[:id])
     end
 	
 	#Dan
 	def set_banda
       @banda = Banda.find(params[:banda_id])
     end	
+	
+	def set_fa
+      @fa = Fa.find(session[:fa_id])
+    end	
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rating_params
-      params.require(:rating).permit(:nota, :comentario, :banda_id)
+      params.require(:rating).permit(:nota, :comentario, :banda_id, :fa_id)
     end
 end

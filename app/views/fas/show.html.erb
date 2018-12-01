@@ -1,11 +1,84 @@
+<h1>Página do Fã</h1>
+<br>
 <p id="notice"><%= notice %></p>
 
+<h3>Lista de bandas</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Genero</th>
+      <th>Pais de origem</th>
+      <th>Membros</th>
+      <th>Media rating</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bandas.each do |banda| %>
+      <tr>
+        <td><%= banda.name %></td>
+        <td><%= banda.genero %></td>
+        <td><%= banda.pais_de_origem %></td>
+        <td><%= banda.membros %></td>
+        <td><%= banda.media_rating %></td>
+        <td><%= banda.status %></td>
+        <td><%= link_to 'Show', banda %></td>
+        <td><%= link_to 'Edit', edit_banda_path(banda) %></td>
+        <td><%= link_to 'Destroy', banda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<br>
 
-<%= link_to 'Lista de Bandas', bandas_path %>
+<h3>Lista de ratings feitas:</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Rating</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ratings.each do |rating| %>
+      <tr>
+        <td><%= rating.nota %></td>
+		<td><%= rating.comentario %></td>
+        <td><%= link_to 'Show', rating %></td>
+        <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
+        <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <br>
-<%= link_to 'Lista de Interpretations', interpretations_path %>
 <br>
-<%= link_to 'Lista de Ratings', ratings_path %>
+
+<h3>Lista de interpretations feitas:</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Interpretation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @interpretations.each do |interpretation| %>
+      <tr>
+        <td><%= interpretation.interpretation %></td>
+        <td><%= link_to 'Show', interpretation %></td>
+        <td><%= link_to 'Edit', edit_interpretation_path(interpretation) %></td>
+        <td><%= link_to 'Destroy', interpretation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <br>
-<%= link_to 'Edit', edit_fa_path(@fa) %> |
+<br>
+
 <%= link_to 'Back', fas_path %>

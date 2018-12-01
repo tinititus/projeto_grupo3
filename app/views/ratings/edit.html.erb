@@ -2,5 +2,4 @@
 
 <%= render 'form', rating: @rating %>
 
-<%= link_to 'Show', @rating %> |
-<%= link_to 'Back', ratings_path(:banda_id => @rating.banda.id) %>
+<%= link_to 'Back', banda_path(@rating.banda) %>

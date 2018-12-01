@@ -7,5 +7,5 @@
 
 <%= link_to 'Edit', edit_interpretation_path(@interpretation) %> |
 <br>
-<%= link_to 'Back (lista de interpretações)', interpretations_path(:musica_id => @musica.id) %> |
+<%= link_to 'Back (lista de interpretações)', interpretations_path(:musica_id => @interpretation.musica.id) %> |
 <%= link_to 'Back (musica)', musica_path(@interpretation.musica) %>

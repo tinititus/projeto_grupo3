@@ -1,6 +1,6 @@
 class MusicasController < ApplicationController
   before_action :set_musica, only: [:show, :edit, :update, :destroy]
-  before_action :set_banda, only: [:index, :new] #Dan
+  before_action :set_banda, only: [:show, :index, :new] #Dan
   
   # GET /musicas
   # GET /musicas.json
@@ -14,6 +14,7 @@ class MusicasController < ApplicationController
   # GET /musicas/1
   # GET /musicas/1.json
   def show
+    @interpretations = Interpretation.where(musica_id: @musica)
   end
 
   # GET /musicas/new

@@ -11,6 +11,9 @@ class FasController < ApplicationController
   # GET /fas/1.json
   def show
     session[:fa_id] = @fa.id #Dan
+	@bandas = Banda.all #Dan
+	@ratings = Rating.where(fa_id: @fa) #Dan
+	@interpretations = Interpretation.where(fa_id: @fa) #Dan
   end
 
   # GET /fas/new
