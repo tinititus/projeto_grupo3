@@ -41,6 +41,13 @@
     <%= form.check_box :status, id: :banda_status %>
   </div>
 
+  <!-- #Dan -->
+  <div class="field" style="visibility: hidden">
+    <%= form.label :usuario_id %>
+    <%= form.text_field :usuario_id, id: :banda_usuario_id %>
+  </div> 
+  
+  
   <div class="actions">
     <%= form.submit %>
   </div>
