@@ -1,4 +1,6 @@
 class Usuario < ApplicationRecord
+	#has_one :banda
+	#has_one :fa
 	has_secure_password
 	validates :username, presence: true, length: {maximum: 50}
 	validates :password, presence: true, length: {minimum: 6}
