@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20181128184644) do
   end
 
   create_table "fas", force: :cascade do |t|
+    t.string "apelido"
     t.integer "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -68,7 +69,7 @@ ActiveRecord::Schema.define(version: 20181128184644) do
     t.string "username"
     t.string "password"
     t.string "email"
-    t.boolean "tipo"
+    t.string "tipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"

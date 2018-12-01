@@ -25,11 +25,19 @@ class UsuariosController < ApplicationController
   # POST /usuarios.json
   def create
     @usuario = Usuario.new(usuario_params)
-
+	
     respond_to do |format|
       if @usuario.save
-        format.html { redirect_to @usuario, notice: 'Usuario was successfully created.' }
-        format.json { render :show, status: :created, location: @usuario }
+		session[:usuario_id] = @usuario.id
+		if @usuario.tipo = "fa"
+			format.html { redirect_to new_fa_path, notice: 'Usuario was successfully created.' }
+			format.json { render :new, status: :created, location: @fa }
+		else
+		    format.html { redirect_to new_banda_path, notice: 'Usuario was successfully created.' }
+			format.json { render :new, status: :created, location: @banda }
+		end 
+        #format.html { redirect_to @usuario, notice: 'Usuario was successfully created.' }
+        #format.json { render :show, status: :created, location: @usuario }
       else
         format.html { render :new }
         format.json { render json: @usuario.errors, status: :unprocessable_entity }
@@ -69,6 +77,6 @@ class UsuariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params
-      params.require(:usuario).permit(:name, :password, :password_confirmation, :email, :tipo)
+      params.require(:usuario).permit(:username, :password, :password_confirmation, :email, :tipo)
     end
 end

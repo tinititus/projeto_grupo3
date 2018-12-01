@@ -44,7 +44,7 @@
     <% @musicas.each do |musica| %>
       <tr>
         <td><%= musica.name %></td>
-        <td><%= musica.duracao %></td>
+        <td><%= musica.duracao.strftime("%I:%M") %></td>
         <td><%= musica.letra %></td>
         <td><%= musica.album %></td>
         <td><%= link_to 'Show', musica_path(:banda_id => @banda.id) %></td>

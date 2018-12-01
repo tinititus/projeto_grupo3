@@ -1,37 +1,44 @@
 <h1>New Usuario</h1>
 
 <%= form_for @usuario do |f| %>
-            <% if @usuario.errors.any? %>
-            <div id="error_explanation">
-                        <div class="alert-error">
-                                   O formulário contém <%= pluralize(@usuario.errors.count, "erro") %>.
-                        </div>
-                        <ul>
-                                   <% @usuario.errors.full_messages.each do |msg| %>
-                                   <li><%= msg %></li>
-                                   <% end %>
-                        </ul>
-            </div>
+	<% if @usuario.errors.any? %>
+	<div id="error_explanation">
+		<div class="alert-error">
+		   O formulário contém <%= pluralize(@usuario.errors.count, "erro") %>.
+		</div>
+		<ul>
+		   <% @usuario.errors.full_messages.each do |msg| %>
+		   <li><%= msg %></li>
+		   <% end %>
+		</ul>
+	</div>
 <% end %>
-            <div class="field">
-                        <%= f.label :username %>
-                        <%= f.text_field :username %>
-            </div>
-            <div class="field">
-                        <%= f.label :email %>
-                        <%= f.email_field :email %>
-            </div>
-            <div class="field">
-                        <%= f.label :password %>
-                        <%= f.password_field :password %>
-            </div>
-            <div class="field">
-                        <%= f.label :password_confirmation %>
-                        <%= f.password_field :password_confirmation %>
-            </div>
-            <div class="actions">
-                        <%= f.submit "Cadastrar"%>
-            </div>
+	<div class="field">
+		<%= f.label :username %>
+		<%= f.text_field :username %>
+	</div>
+	<div class="field">
+		<%= f.label :email %>
+		<%= f.email_field :email %>
+	</div>
+	<div class="field">
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+	</div>
+	<div class="field">
+		<%= f.label :password_confirmation %>
+		<%= f.password_field :password_confirmation %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :tipo %><br />
+		<%= f.radio_button :tipo, 'fa' %> Eu sou Fã<br />
+		<%= f.radio_button :tipo, 'banda' %> Eu sou genrente de Banda<br />
+	</div>
+	
+	<div class="actions">
+		<%= f.submit "Cadastrar"%>
+	</div>
 <% end %>
 
 
