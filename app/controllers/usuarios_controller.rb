@@ -1,5 +1,7 @@
 class UsuariosController < ApplicationController
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, except: [:new, :create]
+  before_action :correct_usuario?, only: [:edit, :update, :destroy]
   
   # GET /usuarios
   # GET /usuarios.json
@@ -19,6 +21,7 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/1/edit
   def edit
+	@usuario = Usuario.find_by(params[:id])
   end
 
   # POST /usuarios
@@ -49,6 +52,12 @@ class UsuariosController < ApplicationController
   # PATCH/PUT /usuarios/1
   # PATCH/PUT /usuarios/1.json
   def update
+	@usuario = Usuario.find_by(params[:id])
+	if @usuario.update_attributes(usuario_params)
+		redirect_to usuarios_path
+	else
+		render action: :edit
+	end
     respond_to do |format|
       if @usuario.update(usuario_params)
         format.html { redirect_to @usuario, notice: 'Usuario was successfully updated.' }
@@ -63,7 +72,10 @@ class UsuariosController < ApplicationController
   # DELETE /usuarios/1
   # DELETE /usuarios/1.json
   def destroy
+	@usuario = Usuario.find_by(params[:id])
     @usuario.destroy
+	sign_out
+	redirect_to root_path
     respond_to do |format|
       format.html { redirect_to usuarios_url, notice: 'Usuario was successfully destroyed.' }
       format.json { head :no_content }

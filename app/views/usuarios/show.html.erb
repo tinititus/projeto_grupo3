@@ -1,24 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Username:</strong>
-  <%= @usuario.username %>
-</p>
+<html>
+    <body>
+            <h3> Perfil de <%= @usuario.usernome %> </h3>
+            <%= @usuario.email %>
+            <% if current_usuario == @usuario %>
+                <ul>
+                    <li><%= link_to "Edit", edit_usuario_path(current_usuario) %></li>
+                    <li><%= link_to "Delete", @usuario, method: :delete%></li>
+                </ul>
+            <%end%>
+    </body>
+</html>
 
-<p>
-  <strong>Password:</strong>
-  <%= @usuario.password %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @usuario.email %>
-</p>
-
-<p>
-  <strong>Tipo:</strong>
-  <%= @usuario.tipo %>
-</p>
-
-<%= link_to 'Edit', edit_usuario_path(@usuario) %> |
 <%= link_to 'Back', usuarios_path %>

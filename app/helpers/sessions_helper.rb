@@ -1,7 +1,5 @@
 module SessionsHelper
-	def sign_in
-		session[:usuario_id] = @usuario_id
-	end
+	
 	def current_usuario
 		@current_usuario ||= Usuario.find_by(id: session[:usuario_id])
 	end

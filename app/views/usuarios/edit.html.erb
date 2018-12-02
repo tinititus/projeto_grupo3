@@ -1,4 +1,11 @@
-<h1>Editing Usuario</h1>
+<h1>Editando Usuario</h1>
+
+<%= render 'form' %>
+
+<ul>
+    <li><%= link_to "Edit", edit_usuario_path(current_usuario) %></li>
+    <li><%= link_to "Delete", @usuario, method: :delete%></li>
+</ul>
 
 <%= render 'form', usuario: @usuario %>
 
