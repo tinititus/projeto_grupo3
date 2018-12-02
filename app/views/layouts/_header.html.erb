@@ -8,14 +8,13 @@
           <li>
             <ul>
               <li><%= link_to "Perfil", current_usuario %></li>
-              <li><%= link_to "Configs", edit_usuario_path(current_usuario) %></li>
               <li>
                 <%= link_to "Logout", sign_out_path, method: "delete" %>
               </li>
             </ul>
           </li>
         <% else %>
-          <li><%= link_to "Bem-Vindo, realize seu login a seguir!", root_path %></li>
+          <li><%= link_to "Bem-Vindo, realize seu login clicando aqui!", root_path %></li>
         <% end %>
       </ul>
     </nav>

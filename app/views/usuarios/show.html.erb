@@ -2,7 +2,7 @@
 
 <html>
     <body>
-            <h3> Perfil de <%= @usuario.usernome %> </h3>
+            <h3> Perfil de <%= @usuario.username %> </h3>
             <%= @usuario.email %>
             <% if current_usuario == @usuario %>
                 <ul>
