@@ -1,0 +1,16 @@
+<%= form_for :session, url: sign_in_path do |f| %>
+
+  <div class="field">
+    <%= f.label :Email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :Password %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Login" %>
+  </div>
+<p>Novo usuário? <%= link_to "Cadastra-se agora!", new_usuario_path %></p>
+<% end %>
