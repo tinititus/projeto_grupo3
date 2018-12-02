@@ -1,6 +1,7 @@
 class FasController < ApplicationController
   before_action :set_fa, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_usuario, only: [:new]
+  
   # GET /fas
   # GET /fas.json
   def index
@@ -18,7 +19,7 @@ class FasController < ApplicationController
 
   # GET /fas/new
   def new
-    @fa = Fa.new
+    @fa = Fa.new(usuario: @usuario)
   end
 
   # GET /fas/1/edit
@@ -70,9 +71,13 @@ class FasController < ApplicationController
     def set_fa
       @fa = Fa.find(params[:id])
     end
+	
+	def set_usuario
+      @usuario = Usuario.find(session[:usuario_id])
+    end	
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fa_params
-      params.fetch(:fa, {})
+      params.require(:fa).permit(:apelido, :usuario_id)
     end
 end

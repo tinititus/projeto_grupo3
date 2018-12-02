@@ -25,7 +25,9 @@
   <strong>Status:</strong>
   <%= @banda.status %>
 </p>
-<%= link_to 'Edit banda info', edit_banda_path(@banda) %>
+<% if @usuario.tipo == "banda" %>
+	<%= link_to 'Edit banda info', edit_banda_path(@banda) %>
+<% end %>
 <br>
 <br>
 
@@ -48,15 +50,21 @@
         <td><%= musica.letra %></td>
         <td><%= musica.album %></td>
         <td><%= link_to 'Show', musica_path(:banda_id => @banda.id) %></td>
-        <td><%= link_to 'Edit', edit_musica_path(musica) %></td>
-        <td><%= link_to 'Destroy', musica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <% if @usuario.tipo == "banda" %>
+			<td><%= link_to 'Edit', edit_musica_path(musica) %></td>
+			<td><%= link_to 'Destroy', musica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+	  </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'New Musica', new_musica_path(:banda_id => @banda.id) %>
+<% if @usuario.tipo == "banda" %>
+	<%= link_to 'New Musica', new_musica_path(:banda_id => @banda.id) %>
+<% end %>
 <br>
 <br>
+
+
 <h3>Lista de ratings</h3>
 <table>
   <thead>
@@ -71,14 +79,23 @@
         <td><%= rating.nota %></td>
 		<td><%= rating.comentario %></td>
         <td><%= link_to 'Show', rating %></td>
-        <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
-        <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+		<% if @usuario.tipo == "fa" %>
+			<td><%= link_to 'Edit', edit_rating_path(rating) %></td>
+			<td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+	  </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'New Rating', new_rating_path(:banda_id => @banda.id) %>
+<% if @usuario.tipo == "fa" %>
+	<%= link_to 'New Rating', new_rating_path(:banda_id => @banda.id) %>
+<% end %>
 <br>
 <br>
 
-<%= link_to 'Back', bandas_path %>
+<% if @usuario.tipo == "fa" %>
+	<%= link_to 'Back', fa_path %> 
+<% end %>
+<br>
+
+<%= link_to 'DESLOGAR', usuarios_path %>

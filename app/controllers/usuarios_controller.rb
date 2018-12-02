@@ -28,8 +28,9 @@ class UsuariosController < ApplicationController
 	
     respond_to do |format|
       if @usuario.save
+		
 		session[:usuario_id] = @usuario.id
-		if @usuario.tipo = "fa"
+		if @usuario.tipo == "fa"
 			format.html { redirect_to new_fa_path, notice: 'Usuario was successfully created.' }
 			format.json { render :new, status: :created, location: @fa }
 		else

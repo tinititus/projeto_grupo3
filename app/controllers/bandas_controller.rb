@@ -1,6 +1,8 @@
 class BandasController < ApplicationController 
   before_action :set_banda, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_usuario, only: [:new, :show]
+  
+  
   # GET /bandas
   # GET /bandas.json
   def index
@@ -17,7 +19,7 @@ class BandasController < ApplicationController
 
   # GET /bandas/new
   def new
-    @banda = Banda.new
+    @banda = Banda.new(usuario: @usuario)
   end
 
   # GET /bandas/1/edit
@@ -69,9 +71,13 @@ class BandasController < ApplicationController
     def set_banda
       @banda = Banda.find(params[:id])
     end
+	
+	def set_usuario
+      @usuario = Usuario.find(session[:usuario_id])
+    end	
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def banda_params
-      params.require(:banda).permit(:name, :genero, :pais_de_origem, :membros, :media_rating, :status)
+      params.require(:banda).permit(:name, :genero, :pais_de_origem, :membros, :media_rating, :status, :usuario_id)
     end
 end
