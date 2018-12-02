@@ -11,4 +11,5 @@ class ApplicationController < ActionController::Base
 	unless current_usuario == @usuario
 		redirect_to usuarios_path
 	end
-  end		
+  end
+end  
