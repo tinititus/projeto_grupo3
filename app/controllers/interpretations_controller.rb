@@ -67,15 +67,15 @@ class InterpretationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_interpretation
-      @interpretation = Interpretation.find(params[:id])
+      @interpretation = Interpretation.find_by(params[:id])
     end
 	
 	def set_musica
-      @musica = Musica.find(params[:musica_id])
+      @musica = Musica.find_by(params[:musica_id])
     end	
 	
 	def set_fa
-      @fa = Fa.find(session[:fa_id])
+      @fa = Fa.find_by(params[:fa_id])
     end	
 
     # Never trust parameters from the scary internet, only allow the white list through.

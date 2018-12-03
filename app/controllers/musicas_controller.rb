@@ -77,7 +77,7 @@ class MusicasController < ApplicationController
 	#Dan
 	def set_banda
 	  #@banda = Banda.find(session[:banda_id])
-      @banda = Banda.find(params[:banda_id])
+      @banda = Banda.find_by(params[:banda_id])
     end	
 	
     # Never trust parameters from the scary internet, only allow the white list through.
