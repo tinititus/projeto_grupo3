@@ -13,8 +13,10 @@ class BandasController < ApplicationController
   # GET /bandas/1.json
   def show
     @musicas = Musica.where(banda_id: @banda) #Dan
-	@ratings = Rating.where(banda_id: @banda) #Dan
-	#session[:banda_id] = @banda.id
+    @ratings = Rating.where(banda_id: @banda) #Dan
+    @fa = Fa.find(session[:fa_id])
+  
+	  #session[:banda_id] = @banda.id
   end
 
   # GET /bandas/new

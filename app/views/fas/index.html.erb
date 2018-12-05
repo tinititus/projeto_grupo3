@@ -5,6 +5,10 @@
 <table>
   <thead>
     <tr>
+    <th>Apelido</th>    
+    <th>Rating</th>
+    <th>Comentario</th>
+    <th colspan="3"></th>    
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +16,7 @@
   <tbody>
     <% @fas.each do |fa| %>
       <tr>
+        <td><%= fa.apelido %></td>
         <td><%= link_to 'Show', fa %></td>
         <td><%= link_to 'Edit', edit_fa_path(fa) %></td>
         <td><%= link_to 'Destroy', fa, method: :delete, data: { confirm: 'Are you sure?' } %></td>

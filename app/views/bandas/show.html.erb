@@ -17,7 +17,7 @@
   <strong>Membros:</strong>
   <%= @banda.membros %>
 </p>
-<p>
+<p hidden>
   <strong>Media rating:</strong>
   <%= @banda.media_rating %>
 </p>
@@ -69,19 +69,22 @@
 <table>
   <thead>
     <tr>
+      <th>Apelido</th>
       <th>Rating</th>
+      <th>Comentario</th>
       <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     <% @ratings.each do |rating| %>
       <tr>
+        <td><%= rating.fa.apelido %></td>
         <td><%= rating.nota %></td>
-		<td><%= rating.comentario %></td>
+		    <td><%= rating.comentario %></td>
         <td><%= link_to 'Show', rating %></td>
-		<% if @usuario.tipo == "fa" %>
-			<td><%= link_to 'Edit', edit_rating_path(rating) %></td>
-			<td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @usuario.tipo == "fa" && rating.fa_id == session[:fa_id] %>
+			    <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
+			    <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
 	  </tr>
     <% end %>
@@ -94,7 +97,7 @@
 <br>
 
 <% if @usuario.tipo == "fa" %>
-	<%= link_to 'Back', fa_path %> 
+  <%= link_to 'Back', fa_path(:id => session[:fa_id]) %> 
 <% end %>
 <br>
 
