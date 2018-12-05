@@ -12,9 +12,13 @@ class BandasController < ApplicationController
   # GET /bandas/1
   # GET /bandas/1.json
   def show
+	session[:banda_id] = @banda.id
     @musicas = Musica.where(banda_id: @banda) #Dan
     @ratings = Rating.where(banda_id: @banda) #Dan
-    @fa = Fa.find(session[:fa_id])
+    if @usuario.tipo == "fa"
+		@fa = Fa.find(session[:fa_id])
+		@ratingsdofa = Rating.where(fa_id: @fa)
+	end
   
 	  #session[:banda_id] = @banda.id
   end

@@ -49,7 +49,7 @@
         <td><%= musica.duracao.strftime("%I:%M") %></td>
         <td><%= musica.letra %></td>
         <td><%= musica.album %></td>
-        <td><%= link_to 'Show', musica_path(:banda_id => @banda.id) %></td>
+        <td><%= link_to 'Show', musica_path(musica) %></td>
         <% if @usuario.tipo == "banda" %>
 			<td><%= link_to 'Edit', edit_musica_path(musica) %></td>
 			<td><%= link_to 'Destroy', musica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -90,7 +90,7 @@
     <% end %>
   </tbody>
 </table>
-<% if @usuario.tipo == "fa" %>
+<% if @usuario.tipo == "fa" && @ratingsdofa.empty? %>
 	<%= link_to 'New Rating', new_rating_path(:banda_id => @banda.id) %>
 <% end %>
 <br>

@@ -1,6 +1,6 @@
 class FasController < ApplicationController
   before_action :set_fa, only: [:show, :edit, :update, :destroy]
-  before_action :set_usuario, only: [:new]
+  before_action :set_usuario, only: [:new, :show]
   
   # GET /fas
   # GET /fas.json

@@ -1,6 +1,6 @@
 class InterpretationsController < ApplicationController
   before_action :set_interpretation, only: [:show, :edit, :update, :destroy]
-  before_action :set_musica, :set_fa, only: [:index, :new] #Dan
+  before_action :set_musica, :set_fa, only: [:index, :new, :destroy] #Dan
   
   # GET /interpretations
   # GET /interpretations.json
@@ -26,6 +26,7 @@ class InterpretationsController < ApplicationController
   # POST /interpretations.json
   def create
     @interpretation = Interpretation.new(interpretation_params)
+	@interpretation.fa_id = session[:fa_id]
 	#@interpretation = @musica.interpretations.build(fa: @fa)
 
     respond_to do |format|
@@ -59,7 +60,7 @@ class InterpretationsController < ApplicationController
     interpretation = @interpretation.musica
     @interpretation.destroy
     respond_to do |format|
-      format.html { redirect_to interpretations_url(:interpretation_id => @interpretation.id), notice: 'Interpretation was successfully destroyed.' }
+      format.html { redirect_to musica_url(@musica.id), notice: 'Interpretation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

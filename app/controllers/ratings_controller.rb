@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :edit, :update, :destroy]
-  before_action :set_banda, :set_fa, only: [:index, :new] #Dan
+  before_action :set_banda, :set_fa, only: [:index, :new, :destroy] #Dan
 
   # GET /ratings
   # GET /ratings.json
@@ -57,7 +57,7 @@ class RatingsController < ApplicationController
   def destroy
     @rating.destroy
     respond_to do |format|
-      format.html { redirect_to ratings_url(:banda_id => banda.id), notice: 'Rating was successfully destroyed.' }
+      format.html { redirect_to banda_url(@banda.id), notice: 'Rating was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,7 +70,7 @@ class RatingsController < ApplicationController
 	
 	#Dan
 	def set_banda
-      @banda = Banda.find(params[:banda_id])
+      @banda = Banda.find(session[:banda_id])
     end	
 	
 	def set_fa

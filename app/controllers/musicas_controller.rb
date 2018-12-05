@@ -1,6 +1,6 @@
 class MusicasController < ApplicationController
   before_action :set_musica, only: [:show, :edit, :update, :destroy]
-  before_action :set_banda, only: [:show, :index, :new] #Dan
+  before_action :set_banda, only: [:show, :index, :new, :destroy] #Dan
   
   # GET /musicas
   # GET /musicas.json
@@ -14,6 +14,11 @@ class MusicasController < ApplicationController
   # GET /musicas/1
   # GET /musicas/1.json
   def show
+	@usuario = Usuario.find(session[:usuario_id])
+	if @usuario.tipo == "fa"
+		@fa = Fa.find(session[:fa_id])
+		@interpretationsdofa = Interpretation.where(fa_id: @fa)
+	end
     @interpretations = Interpretation.where(musica_id: @musica)
   end
 
@@ -30,7 +35,7 @@ class MusicasController < ApplicationController
   # POST /musicas.json
   def create
     @musica = Musica.new(musica_params)
-
+	@musica.banda_id = session[:banda_id]
     respond_to do |format|
       if @musica.save
         format.html { redirect_to @musica, notice: 'Musica was successfully created.' }
@@ -63,7 +68,7 @@ class MusicasController < ApplicationController
 	banda = @musica.banda
     @musica.destroy
     respond_to do |format|
-      format.html { redirect_to musicas_url(:banda_id => banda.id), notice: 'Musica was successfully destroyed.' }
+      format.html { redirect_to banda_url(@banda.id), notice: 'Musica was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,7 +82,7 @@ class MusicasController < ApplicationController
 	#Dan
 	def set_banda
 	  #@banda = Banda.find(session[:banda_id])
-      @banda = Banda.find_by(params[:banda_id])
+      @banda = Banda.find(session[:banda_id])
     end	
 	
     # Never trust parameters from the scary internet, only allow the white list through.
